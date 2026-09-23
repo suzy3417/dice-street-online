@@ -1,5 +1,5 @@
 import {cardsFor,byId,landmarksFor,palette} from './cards.js';
-import {createGame,applyAction,legal} from './engine.js';
+import {createGame,applyAction,legal} from './engine.js?v=20260924b';
 import {onlineReady,createRoom,joinRoom,readRoom,startRoom,saveMove} from './online.js';
 const app=document.querySelector('#app'),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const saved=()=>{try{return JSON.parse(localStorage.getItem('dice-street-local')||'null')}catch{return null}};
