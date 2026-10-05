@@ -7,7 +7,7 @@ async function rpc(name,data){
   const r=await fetch(endpoint(name),{method:'POST',headers:{'Content-Type':'application/json',apikey:supabaseAnonKey},body:JSON.stringify(data)});
   const value=await r.json();if(!r.ok)throw Error(value.message||value.error||'房间连接失败');return value;
 }
-export const createRoom=(name,token,count,millionaire)=>rpc('dice_create_room',{p_name:name,p_token:token,p_count:count,p_millionaire:millionaire});
+export const createRoom=(name,token,count,harbor,millionaire)=>rpc('dice_create_room',{p_name:name,p_token:token,p_count:count,p_harbor:harbor,p_millionaire:millionaire});
 export const joinRoom=(code,name,token)=>rpc('dice_join_room',{p_code:code,p_name:name,p_token:token});
 export const readRoom=code=>rpc('dice_read_room',{p_code:code});
 export const startRoom=(code,token,state)=>rpc('dice_start_room',{p_code:code,p_token:token,p_state:state});

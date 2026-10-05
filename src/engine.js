@@ -12,7 +12,7 @@ const next=s=>{s.turn=(s.turn+1)%s.players.length;s.phase='roll';s.dice=[];s.rol
 const marketFill=s=>{if(!s.marketMode)return;while(s.deck.length&&s.market.length<10){const id=s.deck.shift();if(!s.market.includes(id))s.market.push(id)}};
 export function createGame(names,options={}){
   const settings={playerCount:names.length,harbor:options.harbor??names.length===5,millionaire:Boolean(options.millionaire)};
-  if(![4,5].includes(names.length)||settings.harbor!==(names.length===5))throw Error('请选择四人或五人模式');
+  if(![4,5].includes(names.length)||(names.length===5&&!settings.harbor))throw Error('五人模式需要港口扩充');
   const cs=cardsFor(settings),players=names.map((name,i)=>({id:`p${i}`,name:name.trim()||`玩家 ${i+1}`,coins:3,cards:{wheat:1,bakery:1},landmarks:[],repairs:{},color:i,investment:0}));
   const stock=Object.fromEntries(cs.map(c=>[c.id,c.color==='purple'?names.length:6]));
   stock.wheat-=names.length;stock.bakery-=names.length;
